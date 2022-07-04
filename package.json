@@ -6,6 +6,7 @@
   "scripts": {
     "test": "jest --watch",
     "start": "node dist/index.js",
+    "db": "prisma studio",
     "dev": "ts-node-dev -r tsconfig-paths/register src/index.ts",
     "build": "tsc --project tsconfig.build.json && tsc-alias",
     "clean:build": "ts-node scripts/clean/build.ts",
@@ -13,6 +14,7 @@
     "boot": "ts-node scripts/boot.ts"
   },
   "dependencies": {
+    "@prisma/client": "^4.0.0",
     "dotenv": "^16.0.1",
     "express": "^4.18.1"
   },
@@ -24,6 +26,7 @@
     "@types/supertest": "^2.0.12",
     "chalk": "4.1.2",
     "jest": "^28.1.1",
+    "prisma": "^4.0.0",
     "supertest": "^6.2.3",
     "ts-jest": "^28.0.4",
     "ts-node": "^10.8.1",

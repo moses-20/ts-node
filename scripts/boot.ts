@@ -1,6 +1,13 @@
-import { execute, log } from "./script.tools";
+import { exec } from "child_process";
+import { promisify } from "util";
 
-async function initTS() {
+const execute = promisify(exec);
+const log = console.log;
+
+function init() {
+  const jestConfig = "ts-jest config:init";
+  // TODO: add implementation to allows user choose database migration type
+  const prismaConfig = "prisma db push --force-reset";
   const tsConfig =
     "tsc --init" +
     " --project ./temp.tsconfig.json" +
@@ -21,27 +28,17 @@ async function initTS() {
     " --noImplicitOverride true" +
     " --skipLibCheck true";
 
-  return await execute(tsConfig);
-}
+  const commands = [tsConfig, prismaConfig, jestConfig];
 
-async function initJest() {
-  return await execute("ts-jest config:init");
-}
+  commands.forEach(async (cmd) => {
+    let proc = await execute(cmd);
 
-async function init() {
-  const ts = await initTS();
-  if (ts.stderr) {
-    return log(ts.stderr);
-  }
+    if (proc.stderr) {
+      return log(proc.stderr);
+    }
 
-  log(ts.stdout);
-
-  const jest = await initJest();
-  if (jest.stderr) {
-    return log(jest.stderr);
-  }
-
-  log(jest.stdout);
+    log(proc.stdout);
+  });
 }
 
 init();
