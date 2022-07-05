@@ -2,8 +2,8 @@ import express, { Express, Request, Response } from "express";
 
 const app: Express = express();
 
-app.get("/:name", (req: Request, res: Response) => {
-  const name: string = req.params.name;
+app.get("/user", (req: Request, res: Response) => {
+  const name = req.query.name;
   console.log(`${name} logged in`);
 
   res.status(200).send(`${name} logged in`);
