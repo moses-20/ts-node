@@ -19,6 +19,7 @@ Easily bootstrap a NodeJS TypeScript server
 3. Add your environment variables
 
    ```
+   PORT=4000
    DATABASE_URL=postgresql://USER:PASSWORD@HOST:PORT/DATABASE?schema=SCHEMA
    ```
 
