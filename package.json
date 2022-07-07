@@ -7,7 +7,7 @@
     "test": "jest --watch",
     "start": "node dist/index.js",
     "db": "prisma studio",
-    "dev": "ts-node-dev -r tsconfig-paths/register src/index.ts",
+    "dev": "ts-node-dev --exit-child -r tsconfig-paths/register src/index.ts",
     "build": "tsc --project tsconfig.build.json && tsc-alias",
     "clean:build": "ts-node scripts/clean/build.ts",
     "clean:config": "ts-node scripts/clean/config.ts",
